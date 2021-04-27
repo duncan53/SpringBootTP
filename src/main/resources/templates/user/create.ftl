@@ -1,9 +1,5 @@
-<#if errors??>
-${errors}
-</#if>
-<#if moncookie??>
-${moncookie}
-</#if>
+<#include "../bases/header.ftl"/>
+
 <form method="POST">
   <label for="firstname">Firstname</label>
   <input type="text" id="firstname" name="firstname"/>
@@ -12,5 +8,5 @@ ${moncookie}
 
   <#include "./rolesSelection.ftl">
 
-  <input type="submit" value="Create"/>
+  <input class="btn btn-primary btn-small" type="submit" value="Create"/>
 </form>

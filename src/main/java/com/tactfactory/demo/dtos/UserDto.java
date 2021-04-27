@@ -1,10 +1,13 @@
 package com.tactfactory.demo.dtos;
 
+import java.util.List;
+
 public class UserDto {
 
     private String firstname;
     private String lastname;
     private Long roleId;
+    private List<Long> booksId;
 
     public String getFirstname() {
         return firstname;
@@ -29,4 +32,14 @@ public class UserDto {
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
+
+	public List<Long> getBooksId() {
+		return booksId;
+	}
+
+	public void setBooksId(List<Long> booksId) {
+		this.booksId = booksId;
+	}
+    
+    
 }

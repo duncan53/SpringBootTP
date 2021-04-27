@@ -2,9 +2,6 @@
 
 <div class="container-fluid">
 
-</br>
-<a class="btn btn-primary btn-small" href="/role/create">Create Role</a></br></br>
-
 	
 	<div class="row">
 	
@@ -14,12 +11,13 @@
 
 		<div class="col-auto pb-3">
 			<div class="card" style="width: 18rem;">
-			  <img class="card-img-top" src="https://fakeimg.pl/512/" alt="Card image cap">
+			  <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
 			  <div class="card-header">
 			  	<h5 class="card-title">${item.name}</h5>
 			  </div>
-			   <div class="card-footer">
-			  	<a class="btn btn-primary btn-small" href="/role/details/${item.id}">Detail</a>
+			  <div class="card-body">
+			    <p class="card-text">Pages : ${item.nbPage}</p>
+			    <p class="card-text">Price : ${item.price}</p>
 			  </div>
 			</div>
 		</div>

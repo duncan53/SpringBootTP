@@ -1,5 +1,6 @@
 package com.tactfactory.demo.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ public class User extends BaseEntity {
     private Role role;
     
     @OneToMany
-    private List<Book> books;
+    private List<Book> books = new ArrayList<Book>();
 
     public String getFirstname() {
         return firstname;
@@ -59,6 +60,10 @@ public class User extends BaseEntity {
 	
 	public void addBook(Book book) {
 		this.books.add(book);
+	}
+	
+	public void deleteBook(Book book) {
+		this.books.remove(book);
 	}
     
     

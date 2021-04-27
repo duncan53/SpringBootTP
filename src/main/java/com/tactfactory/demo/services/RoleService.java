@@ -1,6 +1,7 @@
 package com.tactfactory.demo.services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class RoleService {
 
     public Map<Long, String> getTemplateList(){
         Map<Long, String> result = new HashMap<>();
+        
+
 
         for (Role item : this.repository.findAll()) {
             result.put(item.getId(), item.getName());
@@ -28,4 +31,28 @@ public class RoleService {
     public Role findRole(final Long roleId) {
         return this.repository.findById(roleId).orElse(null);
     }
+    
+    public List<Role> findAll() {
+		return this.repository.findAll();
+	}
+    
+    
+    
+    public void generateRole() {
+    	
+    		
+    	
+    	if(this.findAll().isEmpty()) {
+    		Role roleSeller = new Role();
+        	Role roleCustomer = new Role();
+        	
+        	roleSeller.setName("Seller");
+        	roleCustomer.setName("Customer");
+        	
+        	this.repository.save(roleSeller);
+        	this.repository.save(roleCustomer);
+    	}
+
+    }
+    
 }

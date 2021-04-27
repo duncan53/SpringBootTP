@@ -30,19 +30,25 @@ public abstract class BaseCrudController<T extends BaseEntity, DTO> {
         this.TEMPLATE_NAME = templateName;
         this.REDIRECT_INDEX = "redirect:" + "/" + this.TEMPLATE_NAME + INDEX_ROUTE;
         this.REDIRECT_CREATE = "redirect:" + "/" + this.TEMPLATE_NAME + CREATE_ROUTE;
+        
     }
 
     @Autowired
     private JpaRepository<T, Long> repository;
+    
+    
 
     @GetMapping(value = {"", "/", INDEX_ROUTE})
     public String index(final Model model, final HttpServletResponse response) {
 
+    	
         model.addAttribute("items", repository.findAll());
         response.addCookie(new Cookie("moncookie", "coucouDeMonCookie"));
 
         return "/" + this.TEMPLATE_NAME + INDEX_ROUTE;
     }
+    
+    
 
     @GetMapping(value = {CREATE_ROUTE})
     public String createGet(final Model model, final RedirectAttributes attributes, final HttpServletRequest request) {
@@ -67,25 +73,36 @@ public abstract class BaseCrudController<T extends BaseEntity, DTO> {
 
     }
 
+
     @PostMapping(value = {CREATE_ROUTE})
-    public String createPost(final DTO dto, final RedirectAttributes attributes) {
+    public String createPost(final DTO dto, final RedirectAttributes attributes, HttpServletRequest request) {
         String result = this.REDIRECT_INDEX;
+        
+        
 
         try {
-            T item = this.preCreatePost(dto);
+        	System.out.println("try");
+            T item = this.preCreatePost(dto, request);
             this.repository.save(item);
         } catch (Exception e) {
+        	System.out.println(e);
             attributes.addFlashAttribute(FLASH_ERRORS, e.getMessage());
             result = this.REDIRECT_CREATE;
         }
 
         return result;
     }
+    
+    
+    
 
     @SuppressWarnings("unchecked")
-	protected T preCreatePost(DTO dto) throws Exception {
+	protected T preCreatePost(DTO dto, HttpServletRequest re) throws Exception {
         return (T)dto;
     }
+    
+    
+    
 
     @GetMapping(value = {DETAILS_ROUTE})
     public String details(@PathVariable final Long id, final Model model) {
@@ -100,4 +117,6 @@ public abstract class BaseCrudController<T extends BaseEntity, DTO> {
 
         return result;
     }
+    
+    
 }

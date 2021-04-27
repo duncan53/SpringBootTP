@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 public class Book extends BaseEntity{
 	
 	private String name;
-	private Long nbPage;
+	private int nbPage;
 	private Float price;
 	
 	
@@ -16,10 +16,10 @@ public class Book extends BaseEntity{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Long getNbPage() {
+	public int getNbPage() {
 		return nbPage;
 	}
-	public void setNbPage(Long nbPage) {
+	public void setNbPage(int nbPage) {
 		this.nbPage = nbPage;
 	}
 	public Float getPrice() {
@@ -28,6 +28,5 @@ public class Book extends BaseEntity{
 	public void setPrice(Float price) {
 		this.price = price;
 	}
-	
 	
 }
